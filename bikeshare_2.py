@@ -2,6 +2,7 @@ import time
 import pandas as pd
 import numpy as np
 
+#Get city data to dictionaries
 CITY_DATA = { 'chicago': 'chicago.csv',
               'new york city': 'new_york_city.csv',
               'washington': 'washington.csv' }
@@ -16,7 +17,7 @@ def get_filters():
         (str) day - name of the day of week to filter by, or "all" to apply no day filter
     """
     print('Hello! Let\'s explore some US bikeshare data!')
-    
+
     while True:
         try:
             city = input("Enter one of the 3 city names; chicago, new york city or washigton: ")
@@ -42,7 +43,7 @@ def get_filters():
             break
         except:
             print("):\n Please, input a valid city or verify your input characters!\n):")
-    
+
     # get user input for city (chicago, new york city, washington). HINT: Use a while loop to handle invalid inputs
     while True:
         try:
@@ -89,21 +90,21 @@ def load_data(city, month, day):
         print("Loading all cities")
     else:
         df = pd.read_csv(CITY_DATA[city])
-    
-    #Converting star time colum into a date time 
+
+    #Converting star time colum into a date time
     df['Start Time'] = pd.to_datetime(df['Start Time'])
-    
+
     # extract month and day of week and hour from Start Time to create new columns
     df['month'] = df['Start Time'].dt.month
     df['day_of_week'] = df['Start Time'].dt.weekday_name
     df['hour'] = df['Start Time'].dt.hour
-    
+
     #Let's filter months if applicable
     if month != 'all':
         months = ['january', 'february', 'march', 'april', 'may', 'june']
         month = months.index(month) + 1
         df = df[df['month'] == month]
-    
+
     #Let's filter the days if applcable
     if day != 'all':
         # filter by day of week to create the new dataframe
@@ -112,10 +113,10 @@ def load_data(city, month, day):
     return df
 
 def raw_data(df):
-    """ 
+    """
     Displays 5 rows of data based on user input
     Args:
-        df - panda dataframe returned from filtering by city month and/or day 
+        df - panda dataframe returned from filtering by city month and/or day
         declare - yes or no based on user decision
     """
     declare = str(input("Do you want to view rows of the raw data? 'yes' or 'no': ").lower())
@@ -139,7 +140,7 @@ def time_stats(df):
     # display the most common month
     most_commo_month = df['month'].mode()[0]
     print("The most common month is", most_commo_month)
-    
+
     # display the most common day of week
     most_commo_day = df['day_of_week'].mode()[0]
     print("The most common day of the weeek is ", most_commo_day)
@@ -187,7 +188,7 @@ def trip_duration_stats(df):
     t_seconds = t_minutes // 60
     print("The total time they traveled is {} hours {} minutes and {} seconds".format(t_hours, t_minutes, t_seconds))
     #print("The number of time they traveled is ", total_travel_time, " hours")
-    
+
     # display mean travel time
     mean_travel_time = df['Trip Duration'].mean()
     mn_hours = mean_travel_time
@@ -195,13 +196,13 @@ def trip_duration_stats(df):
     mn_seconds = mn_minutes // 60
     print("The average time they traveled is {} hours {} minutes {} seconds".format(mn_hours, mn_minutes, mn_seconds))
     #print("The average hours they traveled is ", mean_travel_time, " hours")
-    
+
     print("Travel time for each user type:\n")
     # display the total trip duration for each user type
     user_type_trip = df.groupby(['User Type']).sum()['Trip Duration']
     for i, u_trip in enumerate(user_type_trip):
         print("  {}: {} seconds".format(user_type_trip.index[i], u_trip))
-        
+
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
 
@@ -229,7 +230,7 @@ def user_stats(df, city):
         print("The most recent year of birth is ", recent)
         common = df['Birth Year'].mode()[0]
         print("The most common year of birth is ", common)
-    
+
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
 
@@ -240,7 +241,7 @@ def gen_description(df):
         chose - yes or no based on user decision
         """
     chose = str(input("Would you like to display the summary statistics of your selection? 'yes' or 'no': ").lower())
-    
+
     while True:
         if chose == 'yes':
             print(df.describe())

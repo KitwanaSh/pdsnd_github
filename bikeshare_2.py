@@ -17,6 +17,7 @@ def get_filters():
     """
     print('Hello! Let\'s explore some US bikeshare data!')
 
+# get user input for city (chicago, new york city, washington). HINT: Use a while loop to handle invalid inputs
     while True:
         try:
             city = input("Enter one of the 3 city names; chicago, new york city or washigton: ")
@@ -37,7 +38,7 @@ def get_filters():
         except:
             print("):\n Please, input a valid city or verify your input characters!\n):")
 
-    # get user input for city (chicago, new york city, washington). HINT: Use a while loop to handle invalid inputs
+# get user input for month (all, january, february, ... , june)
     while True:
         try:
             month = input("Enter either one of the first semester month (january-june) or type 'all' to get into aquire all the 6 months: ")
@@ -48,7 +49,7 @@ def get_filters():
         except:
             print("):\n Please, enter a valid month index")
 
-    # get user input for month (all, january, february, ... , june)
+# get user input for day of week (all, monday, tuesday, ... sunday)
     while True:
         try:
             day = input("Enter one day of the week or enter 'all' to aquire all days at once: ")
@@ -59,7 +60,6 @@ def get_filters():
         except:
             print("Sorry! That was not a valid week we sugest to enter!")
 
-    # get user input for day of week (all, monday, tuesday, ... sunday)
     print('-'*40)
     print('|'*30, '\n')
     return city, month, day

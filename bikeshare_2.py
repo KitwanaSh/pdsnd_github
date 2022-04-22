@@ -60,12 +60,9 @@ def get_filters():
             print("Sorry! That was not a valid week we sugest to enter!")
 
     # get user input for day of week (all, monday, tuesday, ... sunday)
-
-
     print('-'*40)
     print('|'*30, '\n')
     return city, month, day
-
 
 def load_data(city, month, day):
     """
@@ -83,10 +80,8 @@ def load_data(city, month, day):
         print("Loading all cities")
     else:
         df = pd.read_csv(CITY_DATA[city])
-
     #Converting star time colum into a date time
     df['Start Time'] = pd.to_datetime(df['Start Time'])
-
     # extract month and day of week and hour from Start Time to create new columns
     df['month'] = df['Start Time'].dt.month
     df['day_of_week'] = df['Start Time'].dt.weekday_name
@@ -102,7 +97,6 @@ def load_data(city, month, day):
     if day != 'all':
         # filter by day of week to create the new dataframe
         df = df[ df['day_of_week'] == day.title()]
-
     return df
 
 def raw_data(df):
@@ -133,18 +127,15 @@ def time_stats(df):
     # display the most common month
     most_commo_month = df['month'].mode()[0]
     print("The most common month is", most_commo_month)
-
     # display the most common day of week
     most_commo_day = df['day_of_week'].mode()[0]
     print("The most common day of the weeek is ", most_commo_day)
-
     # display the most common start hour
     df['hour'] = df['Start Time'].dt.hour
     most_commo_hour = df['hour'].mode()[0]
     print("The most common hour is ", most_commo_hour)
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
-
 
 def station_stats(df):
     """Displays statistics on the most popular stations and trip."""
@@ -159,14 +150,11 @@ def station_stats(df):
     # display most commonly used end station
     mst_com_end_station = df['End Station'].mode()[0]
     print("The most end station is", mst_com_end_station)
-
     # display most frequent combination of start station and end station trip
     mst_frequent_str_and_end_station = (df['Start Station'] + '-' + df['End Station']).mode()[0]
     print("The most frequent start to end station is ", mst_frequent_str_and_end_station)
-
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
-
 
 def trip_duration_stats(df):
     """Displays statistics on the total and average trip duration."""
@@ -195,10 +183,8 @@ def trip_duration_stats(df):
     user_type_trip = df.groupby(['User Type']).sum()['Trip Duration']
     for i, u_trip in enumerate(user_type_trip):
         print("  {}: {} seconds".format(user_type_trip.index[i], u_trip))
-
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
-
 
 def user_stats(df, city):
     """Displays statistics on bikeshare users."""
@@ -209,12 +195,10 @@ def user_stats(df, city):
     # Display counts of user types
     user_types = df['User Type'].value_counts()
     print("The user categories are as follow:\n", user_types)
-
     # Display counts of gender
     if city != 'washington':
         genders = df['Gender'].value_counts()
         print("The user genders are:\n", genders)
-
     # Display earliest, most recent, and most common year of birth
     if city != 'washington':
         earliest = df['Birth Year'].max()
@@ -234,7 +218,6 @@ def gen_description(df):
         chose - yes or no based on user decision
         """
     chose = str(input("Would you like to display the summary statistics of your selection? 'yes' or 'no': ").lower())
-
     while True:
         if chose == 'yes':
             print(df.describe())
@@ -260,7 +243,5 @@ def main():
         restart = input('\nWould you like to restart? Enter yes or no.\n')
         if restart.lower() != 'yes':
             break
-
-
 if __name__ == "__main__":
 	main()

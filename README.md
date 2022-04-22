@@ -14,7 +14,7 @@ The main (*python*) file that contains the code in order to do the analysis is n
 The following open source software are required to work on this project:
 - You must have Python3 that includes Numpy and pandas libraries installed using anaconda
 - A text editor eg.(VsCode, Atom or Sublime)
-- A terminal (in my case, i use Git Bash)
+- A terminal (in my case, I use Git Bash)
 
 ### Computation
 In this project, I have written code to provide the following *descriptive statistics*:
@@ -34,3 +34,11 @@ In this project, I have written code to provide the following *descriptive stati
 - counts of each user type
 - counts of each gender (only available for New-York-City and Chicago data)
 - earliest, most recent, most common year of birth (only available for New-York-City and Chicago data)
+
+##### Acknowledgements
+I would like to thank Udacity and Access Bank for giving me this chance. This is an opportunity of life time.
+With this scholarship, I am able to break into a data science career. The journey is till on yes, but thanks to this Scholarship,
+I won't fail further along.
+Of course, this is the final project, which is among the recommendation in order to actually graduate to the Nano degree.
+On behalf of scholars and everyone learning on the Udacity platform, We cannot thank you enough. You are among the industries that are making changes
+for the better future of this world! 

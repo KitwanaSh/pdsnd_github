@@ -253,6 +253,13 @@ def gen_description(df):
     print('_'*40, '\n')
 
 def main():
+    """
+    This is the part where all the above defined funtions depend on.
+    Args:
+    raw_data(df)- refreshes the raw data fuction
+    time_stats(df)- refreshes the time_stats fuction
+    ... -
+    """
     while True:
         city, month, day = get_filters()
         df = load_data(city, month, day)

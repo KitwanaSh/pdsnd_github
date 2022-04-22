@@ -9,3 +9,9 @@ In this project we concentrated on 3 major cities in the United States and each 
 - new-york-city.csv -> City: New-York-City
 - washington.csv -> City: Washington DC
 The main (*python*) file that contains the code in order to do the analysis is named **bikeshare_2.py**
+
+### What Software do you need?
+The following open source software are required to work on this project:
+- You must have Python3 that includes Numpy and pandas libraries installed using anaconda
+- A text editor eg.(VsCode, Atom or Sublime)
+- A terminal (in my case, i use Git Bash)

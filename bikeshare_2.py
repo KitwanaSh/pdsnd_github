@@ -1,4 +1,5 @@
 import time
+import datetime as dt
 import pandas as pd
 import numpy as np
 
@@ -35,7 +36,7 @@ def get_filters():
                 print("Opps! ):\n Sorry! You have entered the wrong city")
                 continue
             break
-            prtin("="*30)
+            print("="*30)
         except:
             print("):\n Please, input a valid city or verify your input characters!\n):")
 
@@ -86,7 +87,7 @@ def load_data(city, month, day):
 
     # extract month and day of week and hour from Start Time to create new columns
     df['month'] = df['Start Time'].dt.month
-    df['day_of_week'] = df['Start Time'].dt.weekday_name
+    df['day_of_week'] = df['Start Time'].dt.day_name()
     df['hour'] = df['Start Time'].dt.hour
 
     #Let's filter months if applicable
